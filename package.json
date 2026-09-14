@@ -68,6 +68,6 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "grfti": "^0.2.0"
+    "grfti": "^0.5.0"
   }
 }
