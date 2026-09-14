@@ -1,4 +1,4 @@
-import { pstfx, xerox } from '../../src/index.ts'
+import { vctrfx, xerox } from '../../src/index.ts'
 import { render } from '../support.ts'
 
-render('xerox', 'tones.svg', (source) => pstfx(source, [xerox()]))
+render('xerox', 'tones.svg', (source) => vctrfx(source, [xerox()]))

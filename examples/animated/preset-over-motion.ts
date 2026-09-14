@@ -1,8 +1,8 @@
-import { pstfx, crt } from '../../src/index.ts'
+import { vctrfx, crt } from '../../src/index.ts'
 import { load, save } from '../support.ts'
 
 const source = load('motion.svg')
 
-const output = pstfx(source, [crt()])
+const output = vctrfx(source, [crt()])
 
 save('motion-crt', source, output)

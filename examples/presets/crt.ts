@@ -1,4 +1,4 @@
-import { pstfx, crt } from '../../src/index.ts'
+import { vctrfx, crt } from '../../src/index.ts'
 import { render } from '../support.ts'
 
-render('crt', 'scene.svg', (source) => pstfx(source, [crt()]))
+render('crt', 'scene.svg', (source) => vctrfx(source, [crt()]))

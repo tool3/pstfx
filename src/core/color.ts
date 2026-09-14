@@ -1,3 +1,4 @@
+import { tryParseRgb } from 'grfti'
 import { clamp } from './numbers.ts'
 
 export interface Rgb {
@@ -10,47 +11,15 @@ export const BLACK: Rgb = { red: 0, green: 0, blue: 0 }
 
 export const WHITE: Rgb = { red: 1, green: 1, blue: 1 }
 
-const HEX_PATTERN = /^#?([0-9a-f]{3,8})$/i
-
-const FUNCTIONAL_PATTERN = /^rgba?\(([^)]+)\)$/i
-
-const expandShorthand = (hex: string): string =>
-  hex.length === 3 || hex.length === 4
-    ? Array.from(hex.slice(0, 3), (character) => character.repeat(2)).join('')
-    : hex.slice(0, 6)
-
-const fromHex = (hex: string): Rgb | null => {
-  const expanded = expandShorthand(hex)
-  return expanded.length === 6
-    ? {
-        red: Number.parseInt(expanded.slice(0, 2), 16) / 255,
-        green: Number.parseInt(expanded.slice(2, 4), 16) / 255,
-        blue: Number.parseInt(expanded.slice(4, 6), 16) / 255,
-      }
-    : null
-}
-
-const channelValue = (raw: string): number =>
-  raw.trim().endsWith('%')
-    ? clamp(Number.parseFloat(raw) / 100, 0, 1)
-    : clamp(Number.parseFloat(raw) / 255, 0, 1)
-
-const fromFunctional = (body: string): Rgb | null => {
-  const parts = body.split(/[\s,/]+/).filter((part) => part.length > 0)
-  const [red, green, blue] = parts.map(channelValue)
-  return red !== undefined && green !== undefined && blue !== undefined && [red, green, blue].every(Number.isFinite)
-    ? { red, green, blue }
-    : null
-}
+// vctrfx has always accepted bare hex without the leading '#'.
+const BARE_HEX = /^[0-9a-f]{3,8}$/i
 
 export const parseColor = (value: string, fallback: Rgb = BLACK): Rgb => {
-  const hexMatch = HEX_PATTERN.exec(value.trim())
-  const functionalMatch = FUNCTIONAL_PATTERN.exec(value.trim())
-  return (
-    (hexMatch?.[1] !== undefined ? fromHex(hexMatch[1]) : null) ??
-    (functionalMatch?.[1] !== undefined ? fromFunctional(functionalMatch[1]) : null) ??
-    fallback
-  )
+  const trimmed = value.trim()
+  const parsed = tryParseRgb(BARE_HEX.test(trimmed) ? `#${trimmed}` : trimmed)
+  return parsed === undefined
+    ? fallback
+    : { red: parsed.r / 255, green: parsed.g / 255, blue: parsed.b / 255 }
 }
 
 export const channels = (color: Rgb): readonly number[] => [color.red, color.green, color.blue]

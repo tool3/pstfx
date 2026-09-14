@@ -14,17 +14,17 @@ Each script reads a source from `sources/`, applies one effect, and writes a
 before/after pair into `svgs/`:
 
 ```ts
-import { pstfx, halftone } from '../../src/index.ts'
+import { vctrfx, halftone } from '../../src/index.ts'
 import { load, save } from '../support.ts'
 
 const source = load('scene.svg')
 
-const output = pstfx(source, [halftone({ size: 5, angle: 15 })])
+const output = vctrfx(source, [halftone({ size: 5, angle: 15 })])
 
 save('halftone', source, output)
 ```
 
-In your own project that first import is `from 'pstfx'`; here it points at the source
+In your own project that first import is `from 'vctrfx'`; here it points at the source
 so the examples run against your working copy without a build.
 
 ## Layout
@@ -113,7 +113,7 @@ The examples are deliberately one effect each. In real use they stack, and effec
 take an `animate` option will loop on their own once you turn it on:
 
 ```ts
-pstfx(source, [scanlines({ animate: true, speed: 4 }), grain({ animate: true })])
+vctrfx(source, [scanlines({ animate: true, speed: 4 }), grain({ animate: true })])
 ```
 
 `npm run gallery` renders every effect and preset side by side into

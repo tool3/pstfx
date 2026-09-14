@@ -1,9 +1,9 @@
-import { pstfx, crt } from '../../src/index.ts'
+import { vctrfx, crt } from '../../src/index.ts'
 import { load, save } from '../support.ts'
 
 const source = load('matrix.svg')
 
-const output = pstfx(
+const output = vctrfx(
   source,
   [
     crt()

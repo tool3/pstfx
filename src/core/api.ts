@@ -2,16 +2,16 @@ import { parse } from './parse.ts'
 import { shortHash } from './random.ts'
 import { render } from './engine.ts'
 import { serialize } from './serialize.ts'
-import type { Effect, Pipeline, ResolvedSettings, PstfxSettings } from './types.ts'
+import type { Effect, Pipeline, ResolvedSettings, VctrfxSettings } from './types.ts'
 
-const DEFAULT_PREFIX = 'pstfx'
+const DEFAULT_PREFIX = 'vctrfx'
 
 const sanitizePrefix = (prefix: string): string => {
   const cleaned = prefix.replace(/[^A-Za-z0-9_-]/g, '')
   return /^[A-Za-z]/.test(cleaned) ? cleaned : `${DEFAULT_PREFIX}${cleaned}`
 }
 
-export const resolveSettings = (settings: PstfxSettings = {}): ResolvedSettings => ({
+export const resolveSettings = (settings: VctrfxSettings = {}): ResolvedSettings => ({
   seed: String(settings.seed ?? DEFAULT_PREFIX),
   prefix: sanitizePrefix(settings.prefix ?? DEFAULT_PREFIX),
   scope: settings.scope === undefined ? '' : sanitizePrefix(settings.scope),
@@ -31,15 +31,15 @@ const run = (source: string, effects: readonly Effect[], settings: ResolvedSetti
   return serialize(render(parse(source), effects, resolved), resolved.format)
 }
 
-export const pstfx = (
+export const vctrfx = (
   source: string,
   effects: readonly Effect[] = [],
-  settings: PstfxSettings = {},
+  settings: VctrfxSettings = {},
 ): string => run(source, effects, resolveSettings(settings))
 
 export const createPipeline = (
   effects: readonly Effect[],
-  settings: PstfxSettings = {},
+  settings: VctrfxSettings = {},
 ): Pipeline => {
   const resolved = resolveSettings(settings)
   return {

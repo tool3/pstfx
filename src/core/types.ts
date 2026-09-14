@@ -43,7 +43,7 @@ export type AttributeInput = Readonly<Record<string, AttributeValue>>
 
 export type OutputFormat = 'preserve' | 'pretty' | 'minify'
 
-export interface PstfxSettings {
+export interface VctrfxSettings {
   readonly seed?: string | number
   readonly prefix?: string
   readonly scope?: string

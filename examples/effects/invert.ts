@@ -1,4 +1,4 @@
-import { pstfx, invert } from '../../src/index.ts'
+import { vctrfx, invert } from '../../src/index.ts'
 import { render } from '../support.ts'
 
-render('invert', 'scene.svg', (source) => pstfx(source, [invert()]))
+render('invert', 'scene.svg', (source) => vctrfx(source, [invert()]))

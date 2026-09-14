@@ -1,4 +1,4 @@
-import { pstfx, neon } from '../../src/index.ts'
+import { vctrfx, neon } from '../../src/index.ts'
 import { render } from '../support.ts'
 
-render('neon', 'mark.svg', (source) => pstfx(source, [neon({ color: '#4cc9f0' })]))
+render('neon', 'mark.svg', (source) => vctrfx(source, [neon({ color: '#4cc9f0' })]))

@@ -1,4 +1,4 @@
-import { pstfx, sepia } from '../../src/index.ts'
+import { vctrfx, sepia } from '../../src/index.ts'
 import { render } from '../support.ts'
 
-render('sepia', 'scene.svg', (source) => pstfx(source, [sepia()]))
+render('sepia', 'scene.svg', (source) => vctrfx(source, [sepia()]))

@@ -1,8 +1,8 @@
-export { pstfx, createPipeline, resolveSettings } from './core/api.ts'
+export { vctrfx, createPipeline, resolveSettings } from './core/api.ts'
 export { toDataUri } from './core/data-uri.ts'
 export type { DataUriOptions } from './core/data-uri.ts'
-export { PstfxError } from './core/errors.ts'
-export type { PstfxErrorCode } from './core/errors.ts'
+export { VctrfxError } from './core/errors.ts'
+export type { VctrfxErrorCode } from './core/errors.ts'
 export { parse } from './core/parse.ts'
 export { serialize } from './core/serialize.ts'
 export { compose, defineEffect, filterStage, layerStage, isEffect } from './core/effect.ts'
@@ -61,7 +61,7 @@ export type {
   OutputFormat,
   Pipeline,
   ResolvedSettings,
-  PstfxSettings,
+  VctrfxSettings,
   SvgAttributes,
   SvgComment,
   SvgDocument,

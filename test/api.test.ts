@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { createPipeline, resolveSettings, pstfx } from '../src/core/api.ts'
+import { createPipeline, resolveSettings, vctrfx } from '../src/core/api.ts'
 import { toDataUri } from '../src/core/data-uri.ts'
 import { compose } from '../src/core/effect.ts'
 import { blur } from '../src/effects/blur.ts'
@@ -11,8 +11,8 @@ const SOURCE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rec
 
 test('resolves settings with documented defaults', () => {
   assert.deepEqual(resolveSettings(), {
-    seed: 'pstfx',
-    prefix: 'pstfx',
+    seed: 'vctrfx',
+    prefix: 'vctrfx',
     scope: '',
     clip: 'shape',
     animate: true,
@@ -21,7 +21,7 @@ test('resolves settings with documented defaults', () => {
 })
 
 test('sanitizes a prefix that would produce invalid ids', () => {
-  assert.equal(resolveSettings({ prefix: '9 my prefix!' }).prefix, 'pstfx9myprefix')
+  assert.equal(resolveSettings({ prefix: '9 my prefix!' }).prefix, 'vctrfx9myprefix')
 })
 
 test('a pipeline applies the same effects to many documents', () => {
@@ -48,12 +48,12 @@ test('compose merges effects into one named effect', () => {
   const stack = compose('house-style', [grayscale(), blur(), scanlines()])
   assert.equal(stack.name, 'house-style')
   assert.equal(stack.stages.length, 3)
-  assert.match(pstfx(SOURCE, [stack]), /type="saturate"/)
+  assert.match(vctrfx(SOURCE, [stack]), /type="saturate"/)
 })
 
 test('formats the output on request', () => {
-  assert.match(pstfx(SOURCE, [blur()], { format: 'pretty' }), /\n {2}<defs>/)
-  assert.equal(pstfx(SOURCE, [blur()], { format: 'minify' }).includes('\n'), false)
+  assert.match(vctrfx(SOURCE, [blur()], { format: 'pretty' }), /\n {2}<defs>/)
+  assert.equal(vctrfx(SOURCE, [blur()], { format: 'minify' }).includes('\n'), false)
 })
 
 test('encodes a uri data url by default', () => {
@@ -69,8 +69,8 @@ test('encodes a base64 data url on request', () => {
 })
 
 test('the seed changes generated randomness but not structure', () => {
-  const first = pstfx(SOURCE, [scanlines()], { seed: 'a' })
-  const second = pstfx(SOURCE, [scanlines()], { seed: 'b' })
+  const first = vctrfx(SOURCE, [scanlines()], { seed: 'a' })
+  const second = vctrfx(SOURCE, [scanlines()], { seed: 'b' })
   assert.notEqual(first, second)
   assert.equal(first.split('<').length, second.split('<').length)
 })

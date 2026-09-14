@@ -1,4 +1,4 @@
-import { pstfx, contrast } from '../../src/index.ts'
+import { vctrfx, contrast } from '../../src/index.ts'
 import { render } from '../support.ts'
 
-render('contrast', 'scene.svg', (source) => pstfx(source, [contrast({ amount: 1.7 })]))
+render('contrast', 'scene.svg', (source) => vctrfx(source, [contrast({ amount: 1.7 })]))
