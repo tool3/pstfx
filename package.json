@@ -1,7 +1,7 @@
 {
   "name": "vctrfx",
-  "version": "0.6.0",
-  "description": "Post-processing effects for any SVG. Scanlines, bloom, glitch, halftone and more \u2014 in, out, still an SVG.",
+  "version": "0.7.0",
+  "description": "Post-processing effects for any SVG. Scanlines, bloom, glitch, halftone and more — in, out, still an SVG.",
   "keywords": [
     "svg",
     "postprocessing",
