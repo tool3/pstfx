@@ -1,4 +1,19 @@
 export { vctrfx, createPipeline, resolveSettings } from './core/api.ts'
+export { applyEffects, effectNames, resolveEffectName, resolveEffects } from './core/resolve.ts'
+export type { EffectsConfig, EffectsInput, EffectsList, EffectSpec, ResolvedEffects } from './core/resolve.ts'
+export { parseEffectString } from './core/dsl.ts'
+export type { ParsedEntry } from './core/dsl.ts'
+export {
+  EFFECT_FACTORIES,
+  EFFECT_NAMES,
+  PRESET_FACTORIES,
+  PRESET_NAMES,
+  REGISTERED_NAMES,
+  canonicalName,
+  findFactory,
+  isRegisteredEffect,
+} from './core/registry.ts'
+export type { EffectFactory, EffectName, EffectOptions, PresetName } from './core/registry.ts'
 export { toDataUri } from './core/data-uri.ts'
 export type { DataUriOptions } from './core/data-uri.ts'
 export { VctrfxError } from './core/errors.ts'

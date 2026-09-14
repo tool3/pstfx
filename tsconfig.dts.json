@@ -1,14 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "nodenext",
-    "types": ["node"],
-    "moduleResolution": "nodenext",
     "noEmit": false,
+    "emitDeclarationOnly": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "dist/esm",
+    "outDir": "dist",
     "rootDir": "src"
   },
   "include": ["src"]

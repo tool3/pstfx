@@ -1,4 +1,10 @@
-export type VctrfxErrorCode = 'INVALID_SOURCE' | 'NOT_AN_SVG' | 'MALFORMED_MARKUP' | 'INVALID_EFFECT'
+export type VctrfxErrorCode =
+  | 'INVALID_SOURCE'
+  | 'NOT_AN_SVG'
+  | 'MALFORMED_MARKUP'
+  | 'INVALID_EFFECT'
+  | 'UNKNOWN_EFFECT'
+  | 'INVALID_EFFECT_SYNTAX'
 
 export class VctrfxError extends Error {
   readonly code: VctrfxErrorCode
@@ -26,3 +32,20 @@ export const malformedMarkup = (detail: string): VctrfxError =>
 
 export const invalidEffect = (position: number): VctrfxError =>
   new VctrfxError('INVALID_EFFECT', `Effect at index ${position} is not a valid effect.`)
+
+export const unknownEffect = (name: string, suggestion: string | undefined): VctrfxError =>
+  new VctrfxError(
+    'UNKNOWN_EFFECT',
+    suggestion === undefined
+      ? `Unknown effect "${name}".`
+      : `Unknown effect "${name}". Did you mean "${suggestion}"?`,
+  )
+
+export const invalidEffectSyntax = (detail: string): VctrfxError =>
+  new VctrfxError('INVALID_EFFECT_SYNTAX', `Could not parse the effect list: ${detail}.`)
+
+export const invalidEffectSpec = (received: string): VctrfxError =>
+  new VctrfxError(
+    'INVALID_EFFECT',
+    `Expected an effect name, an effect, or a { name: options } object, received ${received}.`,
+  )
