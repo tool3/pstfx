@@ -15,7 +15,7 @@ export const save = (name: string, before: string, after: string): void => {
   console.log(`${name.padEnd(22)} svgs/${name}.before.svg  ->  svgs/${name}.after.svg`)
 }
 
-export const MOTION_SOURCE = 'tetrahedron.svg'
+export const MOTION_SOURCE = 'motion.svg'
 
 export const render = (
   name: string,

@@ -12,13 +12,11 @@ const sources = join(here, '..', 'examples', 'sources')
 
 const read = (name: string): string => readFileSync(join(sources, name), 'utf8')
 
-const scene = read('scene.svg')
+const scene = read('logo.svg')
 
 const mark = read('mark.svg')
 
 const motion = read('motion.svg')
-
-const tetra = read('tetrahedron.svg')
 
 const tones = read('tones.svg')
 
@@ -134,7 +132,6 @@ const page = `<!doctype html>
 ${section('Scene', sceneVariants.map(card(scene)))}
 ${section('Mark', markVariants.map(card(mark)))}
 ${section('Tones', toneVariants.map(card(tones)))}
-${section('Spinning solid', tetraVariants.map(card(tetra)))}
 ${section('Already animated', motionVariants.map(card(motion)))}
 </body>
 </html>

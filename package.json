@@ -1,7 +1,7 @@
 {
   "name": "vctrfx",
   "version": "0.9.0",
-  "description": "Post-processing effects for any SVG. Scanlines, bloom, glitch, halftone and more \u2014 in, out, still an SVG.",
+  "description": "Post-processing effects for any SVG. Scanlines, bloom, glitch, halftone and more — in, out, still an SVG.",
   "keywords": [
     "svg",
     "postprocessing",
@@ -50,7 +50,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup && tsc -p tsconfig.dts.json && cp dist/index.d.ts dist/index.d.cts",
+    "build": "tsdown",
     "typecheck": "tsc -p tsconfig.json",
     "test": "node --test \"test/**/*.test.ts\"",
     "test:watch": "node --test --watch \"test/**/*.test.ts\"",
@@ -64,8 +64,8 @@
   "devDependencies": {
     "@types/node": "^26.4.1",
     "shellfie": "^2.4.4",
-    "typescript": "^7.0.2",
-    "tsup": "^8.5.1"
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "grfti": "^0.5.0"
